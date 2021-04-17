@@ -1,0 +1,10 @@
+﻿@model IList<string>
+@{
+    var jsonArray = Model?.Any() == true ? Newtonsoft.Json.JsonConvert.SerializeObject(Model) : "";
+}
+
+<div class="semantish" style="margin: 10px 0px; max-width: 300px;">
+    <input class="multi-email-input" value="@jsonArray" name="@ViewData.TemplateInfo.HtmlFieldPrefix" />
+</div>
+
+

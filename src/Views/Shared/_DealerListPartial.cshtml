@@ -1,0 +1,15 @@
+﻿@model List<DealerViewModel>
+
+
+<ul class="list-group">
+    @foreach (var d in Model)
+    {
+        <li class="list-group-item">
+            <a asp-controller="Dealers" asp-action="Edit" asp-route-id="@d.Id">
+                @d.Name (@d.PhoneNumber)
+            </a>
+        </li>
+        
+    }
+</ul>
+

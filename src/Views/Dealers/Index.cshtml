@@ -1,0 +1,31 @@
+@* This addTagHelper makes that vc: tag helper work, could also be in _ViewImports.cshtml *@
+@addTagHelper *, DealerVision.Components.Web
+@{
+    ViewData["Title"] = "Dealer List";
+}
+
+<div>
+    <h3 class="display-4">Dealers</h3>
+
+    <div class="alert alert-primary mt-3" role="alert">
+        Partial _DealerListPartial.cshtml in /Shared
+    </div>
+
+    <partial name="_DealerListPartial" model="Model" />
+
+    <div class="alert alert-primary mt-3" role="alert">
+        View Component DealerList.cs in /Shared/Components 
+    </div>
+
+    <vc:dealer-list list="@Model" />
+
+    @* alternately you can use this for viewcomponents
+        @await Component.InvokeAsync("DealerList", Model)
+    *@
+
+
+
+            <div style="margin-top:20px">
+                <a class="btn btn-primary" asp-action="Create">Add Dealer</a>
+            </div>
+        </div>

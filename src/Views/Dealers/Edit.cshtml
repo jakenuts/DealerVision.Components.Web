@@ -1,0 +1,80 @@
+﻿@* This addTagHelper makes that vc: tag helper work, could also be in _ViewImports.cshtml *@
+@addTagHelper *, DealerVision.Components.Web
+@model DealerViewModel
+
+@{
+    ViewBag.Title = "Dealer List";
+
+}
+
+<title>title</title>
+
+    <form asp-controller="Dealers" asp-action="@(Model.Id > 0 ? "Edit": "Create")" method="post">
+
+    <div class="mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="mb-4">
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+
+        <div class="alert alert-primary mt-3" role="alert">
+            Partial _MultipleEmailPartial.cshtml in /Shared/EditorTemplates (Recommended)
+            <div class="form-text">&#64Html.EditorFor(model => model.EmailList1, "_MultipleEmailPartial")</div>
+        </div>
+
+
+        <div class="mb-5">
+        <label asp-for="EmailList1"></label>
+        @Html.EditorFor(model => model.EmailList1, "_MultipleEmailPartial")
+        <span asp-validation-for="EmailList1"></span>
+        
+    </div>
+
+
+    <div class="alert alert-primary mt-3" role="alert">
+        View Component EmailInputList.cs in /Shared/Components/EmailInputList
+        <div class="form-text">&lt;vc:email-input-list emails="&#64;Model.EmailList2"/&gt;</div>
+    </div>
+
+    <div class="mb-5">
+        <label asp-for="EmailList2"></label>
+        <vc:email-input-list emails="@Model.EmailList2" field-name="EmailList2" />
+        <span asp-validation-for="EmailList2"></span>
+
+    </div>
+
+
+
+    <div class="col-md-2">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+    
+    
+    <div class="alert alert-secondary mt-6" style="margin-top: 50px;" role="alert">
+        multiple-emails css &amp; js linked and initialized at page level
+    </div>
+
+
+</form>  
+
+@section Head
+{
+    <link rel="stylesheet" href="~/css/multiple-emails.css" asp-append-version="true" />
+}
+
+@section Scripts
+{
+    <script src="~/js/multiple-emails.js" asp-append-version="true"></script>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+            $('.multi-email-input').multiple_emails({ theme: "Bootstrap", placeholder:"Enter an email" });
+        });
+    </script>
+}
